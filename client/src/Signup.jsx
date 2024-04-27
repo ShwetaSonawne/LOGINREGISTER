@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [error, setErrors] = useState({});
-  const [name, setName] = useState();
+  const [fname, setFname] = useState();
+  const [lname, setLname] = useState();
+  const [age, setAge] = useState();
+  const [gender, setGender] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
@@ -17,7 +20,7 @@ function Signup() {
     const error = validation();
     setErrors(error);
     if (Object.values(error).every(error => error === "")) {
-        axios.post("http://localhost:3001/register", { name, email, password })
+        axios.post("http://localhost:3001/register", { fname, lname, age, gender, email })
         .then((result) => {
           console.log(result);
           alert("successful");
@@ -35,10 +38,28 @@ function Signup() {
   const validation = () => {
     const error = {};
 
-    if (!name) {
-      error.name = "name is Required";
+    if (!fname) {
+      error.fname = "First Name is Required";
     } else {
-      error.name = "";
+      error.fname = "";
+    }
+
+    if (!lname) {
+      error.lname = "Last Name is Required";
+    } else {
+      error.lname = "";
+    }
+
+    if (!age) {
+      error.age = "Age is Required";
+    } else {
+      error.age = "";
+    }
+
+    if (!gender) {
+      error.gender = "Gender is Required";
+    } else {
+      error.gender = "";
     }
 
     if (!email) {
@@ -67,17 +88,63 @@ function Signup() {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email">
-              <strong>Name</strong>
+              <strong>First Name</strong>
             </label>
             <input
               type="text"
-              placeholder="Enter Name"
+              placeholder="Enter First Name"
               autoComplete="off"
-              name="name"
+              name="fname"
               className="form-control rounded-0"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setFname(e.target.value)}
             />
-            {error.name && <div className="text-danger">{error.name}</div>}
+            {error.fname && <div className="text-danger">{error.fname}</div>}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email">
+              <strong>Last Name</strong>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Last Name"
+              autoComplete="off"
+              name="lname"
+              className="form-control rounded-0"
+              onChange={(e) => setLname(e.target.value)}
+            />
+            {error.lname && <div className="text-danger">{error.lname}</div>}
+          </div>
+          <div className="mb-3">
+          <label htmlFor="gender">
+              <strong>Select Gender  </strong>
+            </label>
+            <select 
+               id = "gender"
+               value = {gender}
+               onChange={(e) => setGender(e.target.value)}
+            >
+              <option value="">---Select---</option>
+              <option value="male">male</option>
+              <option value="female">female</option>
+              <option value="other">other</option>
+              
+            </select>
+              
+            {error.gender && <div className="text-danger">{error.gender}</div>}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email">
+              <strong>Age</strong>
+            </label>
+            <input
+              type="number"
+              placeholder="Enter Your Age"
+              autoComplete="off"
+              name="age"
+              className="form-control rounded-0"
+              onChange={(e) => setAge(e.target.value)}
+            />
+            {error.age && <div className="text-danger">{error.age}</div>}
           </div>
           <div className="mb-3">
             <label htmlFor="email">

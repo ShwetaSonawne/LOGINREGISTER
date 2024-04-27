@@ -19,24 +19,22 @@ function Home () {
                 <table className="table">
                     <thread>
                         <tr>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Email
-                            </th>
-                            <th>
-                                password
-                            </th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Email</th>
                         </tr>
                     </thread>
                     <tbody>
                         {
                             employees.map((employee, index) => (
                                 <tr key={index}>
-                                    <td>{employee.name}</td>
+                                    <td>{employee.fname}</td>
+                                    <td>{employee.lname}</td>
+                                    <td>{employee.age}</td>
+                                    <td>{employee.gender}</td>
                                     <td>{employee.email}</td>
-                                    <td>{employee.password}</td>
                                 </tr>
 
                             ))
