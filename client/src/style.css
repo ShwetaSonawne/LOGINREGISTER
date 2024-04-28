@@ -1,0 +1,107 @@
+/* styles.css */
+
+/* Container styling */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #9aa9ff, #c4ddfac2);
+    height: 100vh;
+    
+ }
+  
+  /* Form styling */
+  .form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+  }
+  
+  .form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form label {
+    font-weight: bold;
+  }
+  
+  .form input,
+  .form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form input[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .form input[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  .form .error-message {
+    color: red;
+  }
+  
+  .form .login-link {
+    text-align: center;
+  }
+  
+  .form .login-link a {
+    text-decoration: none;
+    color: blue;
+  }
+  
+  .form .signup-link {
+    text-align: center;
+  }
+  
+  .form .signup-link a {
+    text-decoration: none;
+    color: blue;
+  }
+
+/* Table styling */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .table-wrapper {
+    width: 80%;
+    margin-top: 50px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin:auto;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+
+  

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./style.css";
+
 
 function Login() {
   const [error, setErrors] = useState({});
@@ -56,8 +58,8 @@ function Login() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-      <div className="bg-white p-3 rounded w-25">
+    <div className="container">
+      <div className="form">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -69,10 +71,10 @@ function Login() {
               placeholder="Enter Email"
               autoComplete="off"
               name="email"
-              className="form-control rounded-0"
+              className="form-control"
               onChange={(e) => setEmail(e.target.value)}
             />
-            {error.email && <div className="text-danger">{error.email}</div>}
+            {error.email && <div className="error-message">{error.email}</div>}
           </div>
           <div className="mb-3">
             <label htmlFor="email">
@@ -87,21 +89,17 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
             {error.password && (
-              <div className="text-danger"> {error.password}</div>
+              <div className="error-message"> {error.password}</div>
             )}
           </div>
-          <button type="submit" className="btn btn-success w-100 rounded-0">
+          <button type="submit" className="btn btn-success">
             Login
           </button>
         </form>
         <p></p>
-        <p>Create an Account</p>
-        <Link
-          to="/register"
-          className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
-        >
-          Signup
-        </Link>
+        <p className="signup-link"> Create an Account <Link
+          to="/register">   Signup </Link>
+          </p>
       </div>
     </div>
   );

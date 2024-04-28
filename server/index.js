@@ -33,7 +33,7 @@ app.post("/register", (req, res) => {
 });
 
 app.get("/getUsers", (req, res) => {
-    const { fname, lname, age, gender, email } = req.body;
+    const { fname, lname, date, gender, email } = req.body;
     EmployeeModel.find(req.body)
       .then((employees) => {
         res.json(employees);}

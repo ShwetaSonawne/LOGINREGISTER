@@ -3,6 +3,8 @@ import React from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useEffect, useState } from "react";
+import "./style.css";
+
 
 function Home () {
     const [employees, SetEmployees] = useState([])
@@ -14,25 +16,25 @@ function Home () {
     }, [])
 
     return(
-        <div className="w-100 vh-100 -flex justify-content-center align-items-center">
-            <div className="w-50">
+        <div className="table-container">
+            <div className="table-wrapper">
                 <table className="table">
-                    <thread>
+                    <thead>
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Age</th>
+                            <th>Date of Birth</th>
                             <th>Gender</th>
                             <th>Email</th>
                         </tr>
-                    </thread>
+                    </thead>
                     <tbody>
                         {
                             employees.map((employee, index) => (
                                 <tr key={index}>
                                     <td>{employee.fname}</td>
                                     <td>{employee.lname}</td>
-                                    <td>{employee.age}</td>
+                                    <td>{employee.date}</td>
                                     <td>{employee.gender}</td>
                                     <td>{employee.email}</td>
                                 </tr>

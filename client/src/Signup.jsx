@@ -3,24 +3,29 @@
 import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import "./style.css";
+
 //import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [error, setErrors] = useState({});
   const [fname, setFname] = useState();
   const [lname, setLname] = useState();
-  const [age, setAge] = useState();
+  //const [age, setAge] = useState();
   const [gender, setGender] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  const [date, setDate] = useState(new Date());
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const error = validation();
     setErrors(error);
     if (Object.values(error).every(error => error === "")) {
-        axios.post("http://localhost:3001/register", { fname, lname, age, gender, email,password})
+        axios.post("http://localhost:3001/register", { fname, lname, date, gender, email,password})
         .then((result) => {
           console.log(result);
           alert("successful");
@@ -50,10 +55,10 @@ function Signup() {
       error.lname = "";
     }
 
-    if (!age) {
-      error.age = "Age is Required";
+    if (!date) {
+      error.date = "DOB is Required";
     } else {
-      error.age = "";
+      error.date = "";
     }
 
     if (!gender) {
@@ -82,12 +87,12 @@ function Signup() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-      <div className="bg-white p-3 rounded w-25">
+    <div className="container">
+      <div className="form">
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email">
+            <label htmlFor="fname">
               <strong>First Name</strong>
             </label>
             <input
@@ -95,13 +100,14 @@ function Signup() {
               placeholder="Enter First Name"
               autoComplete="off"
               name="fname"
-              className="form-control rounded-0"
+              className="form-control"
+              value={fname}
               onChange={(e) => setFname(e.target.value)}
             />
-            {error.fname && <div className="text-danger">{error.fname}</div>}
+            {error.fname && <div className="error-message">{error.fname}</div>}
           </div>
           <div className="mb-3">
-            <label htmlFor="email">
+            <label htmlFor="lname">
               <strong>Last Name</strong>
             </label>
             <input
@@ -109,10 +115,11 @@ function Signup() {
               placeholder="Enter Last Name"
               autoComplete="off"
               name="lname"
-              className="form-control rounded-0"
+              className="form-control"
+              value={lname}
               onChange={(e) => setLname(e.target.value)}
             />
-            {error.lname && <div className="text-danger">{error.lname}</div>}
+            {error.lname && <div className="error-message">{error.lname}</div>}
           </div>
           <div className="mb-3">
           <label htmlFor="gender">
@@ -121,6 +128,7 @@ function Signup() {
             <select 
                id = "gender"
                value = {gender}
+               className="form-control"
                onChange={(e) => setGender(e.target.value)}
             >
               <option value="">---Select---</option>
@@ -130,21 +138,20 @@ function Signup() {
               
             </select>
               
-            {error.gender && <div className="text-danger">{error.gender}</div>}
+            {error.gender && <div className="error-message">{error.gender}</div>}
           </div>
           <div className="mb-3">
-            <label htmlFor="email">
-              <strong>Age</strong>
+            <label htmlFor="dob">
+              <strong> Date of Birth </strong>
             </label>
-            <input
-              type="number"
-              placeholder="Enter Your Age"
-              autoComplete="off"
-              name="age"
-              className="form-control rounded-0"
-              onChange={(e) => setAge(e.target.value)}
+            <DatePicker
+            id="date"
+            type="date"
+            selected={date} 
+            className="form-control"
+            onChange={(date) => setDate(date)} 
             />
-            {error.age && <div className="text-danger">{error.age}</div>}
+            {error.date && <div className="error-message">{error.date}</div>}
           </div>
           <div className="mb-3">
             <label htmlFor="email">
@@ -155,10 +162,10 @@ function Signup() {
               placeholder="Enter Email"
               autoComplete="off"
               name="email"
-              className="form-control rounded-0"
+              className="form-control"
               onChange={(e) => setEmail(e.target.value)}
             />
-            {error.email && <div className="text-danger">{error.email}</div>}
+            {error.email && <div className="error-message">{error.email}</div>}
           </div>
           <div className="mb-3">
             <label htmlFor="email">
@@ -169,22 +176,19 @@ function Signup() {
               placeholder="Enter Password"
               autoComplete="off"
               name="password"
-              className="form-control rounded-0"
+              className="form-control"
               onChange={(e) => setPassword(e.target.value)}
             />
-            {error.password && <div className="text-danger"> {error.password}</div>}
+            {error.password && <div className="error-message"> {error.password}</div>}
           </div>
-          <button type="submit" className="btn btn-success w-100 rounded-0">
+          <button type="submit" className="btn btn-success">
             Register
           </button>
         </form>
-        <p>Already Have an Account</p>
+        <p className="login-link"> Already Have an Account?
         <Link
-          to="/login"
-          className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
-        >
-          Login
-        </Link>
+          to="/login"> Login </Link>
+          </p>
       </div>
     </div>
   );

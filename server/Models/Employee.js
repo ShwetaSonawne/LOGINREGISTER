@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const EmployeeSchema = new mongoose.Schema({
     fname: String, 
     lname: String,
-    age: String,
+    date: String,
     gender: String,
     email: String,
     password: String
