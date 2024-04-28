@@ -1,9 +1,9 @@
 //import { useState } from 'react'
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [error, setErrors] = useState({});
@@ -20,7 +20,7 @@ function Signup() {
     const error = validation();
     setErrors(error);
     if (Object.values(error).every(error => error === "")) {
-        axios.post("http://localhost:3001/register", { fname, lname, age, gender, email })
+        axios.post("http://localhost:3001/register", { fname, lname, age, gender, email,password})
         .then((result) => {
           console.log(result);
           alert("successful");
