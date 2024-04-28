@@ -47,10 +47,11 @@
     color: #fff;
     border: none;
     cursor: pointer;
-  }
+      }
   
   .form input[type="submit"]:hover {
     background-color: #218838;
+    
   }
   
   .form .error-message {
@@ -75,6 +76,7 @@
     color: blue;
   }
 
+  
 /* Table styling */
 .table-container {
     display: flex;
