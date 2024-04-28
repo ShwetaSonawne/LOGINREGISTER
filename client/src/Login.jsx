@@ -97,9 +97,9 @@ function Login() {
           </button>
         </form>
         <p></p>
-        <p className="signup-link"> Create an Account <Link
-          to="/register">   Signup </Link>
-          </p>
+        <p className="signup-link"> Create an Account 
+        <Link
+          to="/register"> Signup </Link></p>
       </div>
     </div>
   );
